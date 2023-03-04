@@ -1,0 +1,36 @@
+{
+  "manifestVersion": 1,
+  "id": "azurebicepdeployment",
+  "name": "Azure Bicep Deployment",
+  "version": "0.0.1",
+  "publisher": "James Kerens",
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "description": "This is a demo to show how to use PowerShell in Azure DevOps extensions",
+  "categories": [
+    "Azure Pipelines"
+  ],
+  "icons": {
+    "default": "images/extension-icon.png"
+  },
+  "files": [
+    {
+      "path": "AzureBicepDeployment"
+    }
+  ],
+  "contributions": [
+    {
+      "id": "azure-bicep-deployment-task",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "AzureBicepDeployment"
+      }
+    }
+  ]
+}

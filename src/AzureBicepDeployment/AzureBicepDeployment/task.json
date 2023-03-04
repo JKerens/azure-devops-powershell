@@ -1,0 +1,95 @@
+{
+  "id": "84096100-4036-4ec3-bd36-e2b36d386d1b",
+  "name": "AzureBicepDeployment",
+  "friendlyName": "Azure Bicep Deployment",
+  "description": "Used for Deploying Azure Bicep files",
+  "author": "James Kerens",
+  "helpUrl": "",
+  "helpMarkDown": "",
+  "releaseNotes": "Added 'Deploy If Changed' option to the 'Deployment Modes' tab",
+  "category": "Deploy",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "runsOn": [
+    "Agent",
+    "DeploymentGroup"
+  ],
+  "demands": [],
+  "version": {
+    "Major": 0,
+    "Minor": 0,
+    "Patch": 1
+  },
+  "minimumAgentVersion": "2.0.0",
+  "instanceNameFormat": "Azure Bicep Deployment",
+  "showEnvironmentVariables": true,
+  "groups": [],
+  "inputs": [
+    {
+      "name": "serviceName",
+      "aliases": [
+        "azureSubscription"
+      ],
+      "type": "connectedService:AzureRM",
+      "label": "Azure Subscription",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Azure Resource Manager subscription to configure before running the bicep deployment",
+      "properties": {
+        "EndpointFilterRule": "ScopeLevel != AzureMLWorkspace"
+      }
+    },
+    {
+      "name": "bicepFile",
+      "type": "filePath",
+      "label": "Bicep File Path",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Fully qualified path of the bicep file or a path relative to the the default working directory"
+    },
+    {
+      "name": "parametersFile",
+      "type": "filePath",
+      "label": "Parameters Json File Path",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": ""
+    },
+    {
+      "name": "location",
+      "type": "string",
+      "label": "Deployment Location",
+      "defaultValue": "eastus",
+      "required": false,
+      "helpMarkDown": "(ex: eastus)"
+    },
+    {
+      "name": "mode",
+      "type": "pickList",
+      "label": "Deployment Mode",
+      "defaultValue": "whatIf",
+      "required": false,
+      "helpMarkDown": "",
+      "options": {
+        "whatIf": "WhatIf",
+        "deploy": "Deploy",
+        "deployIfChanged": "Deploy If Changed"
+      }
+    }
+  ],
+  "execution": {
+    "Node10": {
+      "target": "main.js",
+      "argumentFormat": ""
+    }
+  },
+  "messages": {
+    "ErrorExample": "I left a few stock error messages as examples JIC",
+    "ScriptReturnCode": "Script exited with return code: %d",
+    "ScriptFailed": "Script failed with error: %s",
+    "ScriptFailedStdErr": "Script has output to stderr. Failing as failOnStdErr is set to true.",
+    "ScriptFailedWithExitCode": "Script failed with exit code: %d"
+  }
+}
